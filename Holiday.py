@@ -52,7 +52,7 @@ if num_nights < 0:
 else:
         # Step 2: Calculate the hotel cost
         cost = hotel_cost(num_nights)
-        print(f"The total cost for your hotel stay of {num_nights} night(s) is ${cost}.")
+        print(f"The total cost for your hotel stay of {num_nights} night(s) is £{cost}.")
 
 #Define a function that will city_flight as an argument
 # return and print cost of flight
@@ -79,16 +79,18 @@ def plane_cost(city_flight):
 
 #  program to interact with the user
 print("Choose a city you want to travel to:")
-cities = ["Belaruse", "London", "Dubai", "Paris", "Sydney", "Accra"]
-for city in cities:
-    print(city)
-
+#cities = ["Belaruse", "London", "Dubai", "Paris", "Sydney", "Accra"]
+#for city in cities:
+    #print(city)
+#print("Choose your city of travel: ")
+for city, cost in cities_cost.items(): #the loop retrieves the city name, its cost and displays them
+        print(f"{city} - £{cost}") 
 while True:  # Infinite loop to ensure valid input
     city_flight = input("\nEnter the name of the city you want to travel to: ").strip()
     
     # Validate the user's input
     if validate_cities(city_flight):  # Call the validate_cities function
-        cost = plane_cost("city_flight")  # Get the flight cost
+        cost = plane_cost(city_flight)  # Get the flight cost
         print(f"\nYou have chosen to travel to {city_flight}. The flight cost is £{cost}.")
         break  # Exit the loop if input is valid
     else:
@@ -104,6 +106,15 @@ def car_rental(rental_days, rental_price = 60):
     return product
     print(f"{rental_days} * {rental_price} is £{product}")
 
+rental_days = int(input("Enter number of days for car rental: "))
+
+if rental_days < 0:
+        print("The days for car rental cannot be negative. Please enter a valid number.")
+else:
+        # Step 2: Calculate car rental cost
+        cost = car_rental(rental_days)
+        print(f"The total cost for your car rental of {rental_days} day(s) is £{cost}.")
+
 #holiday_cost(): This function takes three arguments: num_nights,
 #city_flight, and rental_days. Using these three arguments, call the
 #hotel_cost(), plane_cost(), and car_rental() functions with their
@@ -114,9 +125,14 @@ def holiday_cost(num_nights, city_flight, rental_days):
      hotel_total = hotel_cost(num_nights)  # Call hotel_cost with num_nights
      flight_total = plane_cost(city_flight)  # Call plane_cost with city_flight
      rental_total = car_rental(rental_days)  # Call car_rental with rental_days
-    
-     total_holiday_cost = hotel_total + flight_total + rental_total  # Sum up all costs
-     return total_holiday_cost
+if num_nights <0:
+    city_flight <0
+    rental_days <0
+    print("These cannot be negative. Please enter a valid number.")
+else:
+    total_holiday_cost = hotel_total + flight_total + rental_total  # Sum up all costs
+    #return total_holiday_cost
+    print(f"Your holiday will cost: {total_holiday_cost}")
    
 
 
